@@ -7,6 +7,7 @@ import AddProduct from './components/AddProduct';
 import UpdateProduct from './components/UpdateProduct';
 import Footer from './components/Footer';
 import Signup from './components/Signup';
+import PrivateComponent from './PrivateComp/PrivateComponent';
 
 function App() {
   return (
@@ -14,9 +15,15 @@ function App() {
   <BrowserRouter>
   <Nav/>
   <Routes>
+
+    <Route element={<PrivateComponent/>}>
     <Route path='/' element={<Profile/>}/>
     <Route path='/add' element={<AddProduct/>}/>
     <Route path='/update' element={<UpdateProduct/>}/>
+    <Route path='/logout' element={<UpdateProduct/>}/>
+    </Route>
+
+
     <Route path='/signup' element={<Signup/>}/>
   </Routes>
   <Footer/>
