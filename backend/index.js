@@ -7,7 +7,7 @@ import router from './routes/UserRoute.js';
 
 const app= express();
 dotenv.config();
-
+app.use(express.json())
 
 
 //  create routess 
