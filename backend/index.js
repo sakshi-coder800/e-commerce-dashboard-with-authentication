@@ -1,14 +1,15 @@
 import express from 'express';
 import colors from 'colors';
 import DBConnect from './database/db.js';
-import dotenv from 'dotenv'
 import router from './routes/UserRoute.js';
+import dotenv from 'dotenv'
+import cors from 'cors'
 
 
 const app= express();
 dotenv.config();
 app.use(express.json())
-
+app.use(cors());
 
 //  create routess 
 app.use("/",router)
