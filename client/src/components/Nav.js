@@ -12,19 +12,26 @@ const Logout =()=>{
 
   return (
     <>
-<ul className={style.navbar}>
+{auth  ? 
+  <ul className={style.navbar}>
     <li><Link to="/"> Home</Link></li>
     <li><Link to="/add"> Add Product</Link></li>
     <li><Link to="/update"> Update Product</Link></li>
     <li><Link to="/profile"> Profile</Link></li>
   {auth ?
- <li> <Link to="/signup" onClick={Logout} > Logout</Link> </li> 
+ <li> <Link to="/signup" onClick={Logout} > Logout  (<small>{JSON.parse(auth).name}</small>) </Link> </li> 
  : <>
- <li><Link to="/signup"> Sign Up</Link> </li>
-   <li><Link to="/login"> login</Link></li>
+ {/* <li><Link to="/signup"> Sign Up</Link> </li>
+   <li><Link to="/login"> login</Link></li> */}
 </>
     }
+</ul> 
+:
+<ul className={style.navbar}>
+<li><Link to="/signup"> Sign Up</Link> </li>
+   <li><Link to="/login"> login</Link></li>
 </ul>
+}
 
     
     </>
