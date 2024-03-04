@@ -21,11 +21,11 @@ function App() {
     <Route path='/' element={<Profile/>}/>
     <Route path='/add' element={<AddProduct/>}/>
     <Route path='/update' element={<UpdateProduct/>}/>
-    <Route path='/Login' element={<Login/>}/>
     </Route>
 
 
     <Route path='/signup' element={<Signup/>}/>
+    <Route path='/Login' element={<Login/>}/>
   </Routes>
   <Footer/>
   </BrowserRouter></>
