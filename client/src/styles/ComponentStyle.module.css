@@ -69,3 +69,12 @@
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
+.form span{
+    color: red;
+    font-size: .9rem;
+    margin: -15px 0  -10px 10px;
+    padding: 0;
+}
+.form span strong{
+  font-size: 1.2rem;
+}
