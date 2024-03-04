@@ -2,6 +2,7 @@ import express from 'express';
 import colors from 'colors';
 import DBConnect from './database/db.js';
 import router from './routes/UserRoute.js';
+import ProductRoute from './routes/productRoute.js';
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 //  create routess 
 app.use("/",router)
+app.use("/",ProductRoute)
 const port=8080;
 const username=process.env.USERNAME;
 const password=process.env.PASSWORD;
