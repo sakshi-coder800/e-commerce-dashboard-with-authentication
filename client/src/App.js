@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import Profile from './components/profile';
 import AddProduct from './components/AddProduct';
 import UpdateProduct from './components/UpdateProduct';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
     <Route path='/add' element={<AddProduct/>}/>
     <Route path='/update' element={<UpdateProduct/>}/>
   </Routes>
-  
+  <Footer/>
   </BrowserRouter></>
   );
 }
