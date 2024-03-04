@@ -1,7 +1,6 @@
 import Product from "../model/product.js";
 
 
-import Product from "../models/Product.js";
 
 export const addProduct = async (req, res) => {
     try {
