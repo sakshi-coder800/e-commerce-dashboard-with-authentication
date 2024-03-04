@@ -3,7 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import style from '../styles/ComponentStyle.module.css';
 const Nav = () => {
   const auth=localStorage.getItem("user");
-
+  const navigate=useNavigate();
+const Logout =()=>{
+  // console.warn("")
+  localStorage.clear();
+  navigate("/signup")
+}
 
   return (
     <>
@@ -13,7 +18,7 @@ const Nav = () => {
     <li><Link to="/update"> Update Product</Link></li>
     <li><Link to="/profile"> Profile</Link></li>
     <li> 
-  {auth ?<Link to="/logout"> Logout</Link> : <Link to="/signup"> Sign Up</Link> }
+  {auth ?<Link to="/signup" onClick={Logout} > Logout</Link> : <Link to="/signup"> Sign Up</Link> }
    </li>
 </ul>
 
