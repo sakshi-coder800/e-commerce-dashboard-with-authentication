@@ -4,8 +4,26 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-const collectData=()=>{
-  console.log(name,email,password)
+const collectData= async()=>{
+
+
+  // console.log(name,email,password)
+  let result=await fetch('http://localhost:8080/register',{
+    method :"post", 
+    body : JSON.stringify({name,email,password}),
+    headers :{
+      'Content-Type':'application/json'
+    },
+  })
+  result= await result.json();
+  // console.warn(await result.json());
+  if(result){
+    console.log("registered");
+  }else{
+    console.log("not")
+
+  }
+
 }
   return (
     <>
