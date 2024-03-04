@@ -14,11 +14,22 @@ const AddProduct = () => {
   const [company, setCompany] = useState("");
 
 
-const addProduct=()=>{
+const add_Product=async()=>{
   console.log(name,email,price,category,company);
+const userId=JSON.parse(localStorage.getItem("user"))._id;
+// console.log(userId._id);
 
 
-  
+const result= await fetch("http://localhost:8080/add-product",{
+method :"post", 
+    body : JSON.stringify({name,price,category,company,userId}),
+    headers :{
+      'Content-Type':'application/json',
+    }
+});
+result= await result.json();
+console.log(result)
+
 }
 
   return (
@@ -30,7 +41,7 @@ const addProduct=()=>{
         <input type="text" value={price} placeholder=" Enter Price"onChange={(e)=>setPrice(e.target.value)} />
         <input type="text" value={category} placeholder=" Enter Category"onChange={(e)=>setCategory(e.target.value)} />
         <input type="text" value={company} placeholder=" Enter Company"onChange={(e)=>setCompany(e.target.value)} />
-        <button type="button" onClick={addProduct}> Add Product</button>
+        <button type="button" onClick={add_Product}> Add Product</button>
       </div>
 
 
