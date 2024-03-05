@@ -13,27 +13,44 @@ const AllProduct = () => {
     setProducts(result);
   };
   console.warn("products", products);
+
+  const deleteProduct = async(id) => {
+    let result = await fetch(`http://localhost:8080/products/${id}`, {
+      method: "DELETE",
+    });
+    result=await result.json();
+    if(result){
+      alert("record delete successfully")
+      getProducts()
+    }
+
+  };
   return (
     <>
       <div className={Style.table}>
         <h4>Product List</h4>
-<table>
-<tr>
-          <th>S.No.</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Category</th>
-        </tr>
-
-        { products.map((item,index)=>{
+        <table>
           <tr>
-          <td>{index+1}</td>
-          <td>{item.name}</td>
-          <td>{item.price}</td>
-          <td>{item.category}</td>
-      </tr>
-    })}
-</table>      </div>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Operations</th>
+          </tr>
+
+          {products.map((item, index) => {
+            <tr>
+              <td>{index + 1}</td>
+              <td>{item.name}</td>
+              <td>{item.price}</td>
+              <td>{item.category}</td>
+              <td>
+                <button onClick={() => deleteProduct(item._id)}> Delete</button>
+              </td>
+            </tr>;
+          })}
+        </table>{" "}
+      </div>
     </>
   );
 };

@@ -99,3 +99,10 @@
   font-size: 1.2rem; 
 text-transform: uppercase;
 }
+.table tr td button{
+  background: #000;
+  color: #fff;
+  font-size: .9rem;
+  padding: .2rem .5rem;
+  border-radius: .5rem;
+}
