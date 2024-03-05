@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Style from "../styles/ComponentStyle.module.css";
+import { useParams } from 'react-router-dom'
 // name: String,
 // price:String,
 // category:String,
@@ -10,6 +11,24 @@ const UpdateProduct = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
+const params=useParams()
+
+useEffect(()=>{
+  getProductDetails();
+},[])
+
+const getProductDetails=async()=>{
+    console.log(params)
+    let result=await fetch(`http://localhost:8080/product/${params.id}`,{
+      method :"get", 
+    })
+    result = await result.json();
+    console.log(result);
+    setName(result.name)
+    setPrice(result.price)
+    setCategory(result.category)
+    setCompany(result.company)
+  }
 
   const update_Product=async()=>{
 
