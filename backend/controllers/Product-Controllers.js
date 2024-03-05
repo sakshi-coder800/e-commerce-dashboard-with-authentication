@@ -1,7 +1,5 @@
 import Product from "../model/product.js";
 
-
-
 export const addProduct = async (req, res) => {
     try {
         // Create a new product instance using the request body
@@ -20,7 +18,6 @@ export const addProduct = async (req, res) => {
         res.status(500).send({ message: "Failed to add product" });
     }
 };
-
 // list product // show all products
 export const getProducts = async (req, res) => {
     try {
@@ -43,9 +40,6 @@ export const getProducts = async (req, res) => {
         res.status(500).send({ message: "Failed to fetch products" });
     }
 };
-
-
-
 // Delete API
 export const deleteProduct = async (req, res) => {
     try {
@@ -68,9 +62,6 @@ export const deleteProduct = async (req, res) => {
         res.status(500).send({ message: "Failed to delete product" });
     }
 };
-
-
-
 // get single product
 export const getProduct = async (req, res) => {
     try {
@@ -93,9 +84,7 @@ export const getProduct = async (req, res) => {
         res.status(500).send({ message: "Failed to fetch product" });
     }
 };
-
-
-
+// update product
 export const updateProduct = async (req, res) => {
     try {
         // Update the product in the database based on the product ID
@@ -115,5 +104,28 @@ export const updateProduct = async (req, res) => {
 
         // Send a user-friendly error message in the response
         res.status(500).send({ message: "Failed to update product" });
+    }
+};
+import Product from "../models/Product.js";
+// search product
+export const searchProduct = async (req, res) => {
+    try {
+        // Search for products in the database based on the search key provided in the request parameters
+        let result = await Product.find({
+            "$or": [
+                { name: { $regex: req.params.key, $options: "i" } }, // Case-insensitive search for product name
+                { company: { $regex: req.params.key, $options: "i" } }, // Case-insensitive search for company name
+                { category: { $regex: req.params.key, $options: "i" } }, // Case-insensitive search for category
+                { price: { $regex: req.params.key, $options: "i" } }, // Case-insensitive search for price
+            ]
+        });
+        // Send the search results to the client
+        res.status(200).send(result);
+    } catch (error) {
+        // Log the error for debugging purposes
+        console.error("Error occurred while searching for products:", error);
+
+        // Send a user-friendly error message in the response
+        res.status(500).send({ message: "Failed to search for products" });
     }
 };
