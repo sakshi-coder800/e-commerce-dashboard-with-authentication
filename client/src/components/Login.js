@@ -24,9 +24,13 @@ navigate("/")
   })
   result= await result.json();
   // console.log(result)
-  if(result.name){
+  // if(result.name){
+    if(result.auth){
     console.log("Login done");
-    localStorage.setItem("user",JSON.stringify(result))
+    // localStorage.setItem("user",JSON.stringify(result))
+    localStorage.setItem("user",JSON.stringify(result.user))
+    localStorage.setItem("token",JSON.stringify(result.auth))
+
     navigate("/")
   }else{
 alert("Please enter Correct Details")
