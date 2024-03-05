@@ -93,3 +93,27 @@ export const getProduct = async (req, res) => {
         res.status(500).send({ message: "Failed to fetch product" });
     }
 };
+
+
+
+export const updateProduct = async (req, res) => {
+    try {
+        // Update the product in the database based on the product ID
+        let result = await Product.updateOne({ _id: req.params.id }, { $set: req.body });
+
+        // Check if the update operation was successful
+        if (result) {
+            // Send a success response if the product was updated
+            res.status(200).send({ message: "Product updated successfully" });
+        } else {
+            // Send a response indicating that the product with the provided ID was not found
+            res.status(404).send({ message: "Product not found or no changes were made" });
+        }
+    } catch (error) {
+        // Log the error for debugging purposes
+        console.error("Error occurred while updating product:", error);
+
+        // Send a user-friendly error message in the response
+        res.status(500).send({ message: "Failed to update product" });
+    }
+};
