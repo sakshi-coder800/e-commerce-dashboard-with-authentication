@@ -43,3 +43,28 @@ export const getProducts = async (req, res) => {
         res.status(500).send({ message: "Failed to fetch products" });
     }
 };
+
+
+
+// Delete API
+export const deleteProduct = async (req, res) => {
+    try {
+        // Delete the product from the database based on the product ID
+        const result = await Product.deleteOne({ _id: req.params.id });
+
+        // Check if the product was successfully deleted
+        if (result.deletedCount > 0) {
+            // Send a success response if the product was deleted
+            res.status(200).send({ message: "Product deleted successfully" });
+        } else {
+            // Send a response indicating that the product with the provided ID was not found
+            res.status(404).send({ message: "Product not found" });
+        }
+    } catch (error) {
+        // Log the error details for debugging purposes
+        console.error("Error occurred while deleting product:", error);
+
+        // Send a user-friendly error message in the response
+        res.status(500).send({ message: "Failed to delete product" });
+    }
+};
