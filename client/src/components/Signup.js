@@ -41,6 +41,7 @@ const collectData= async()=>{
   }
 
 }
+}
   return (
     <>
       <div className={Style.form}>

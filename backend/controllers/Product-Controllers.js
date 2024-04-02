@@ -106,7 +106,6 @@ export const updateProduct = async (req, res) => {
         res.status(500).send({ message: "Failed to update product" });
     }
 };
-import Product from "../models/Product.js";
 // search product
 export const searchProduct = async (req, res) => {
     try {
